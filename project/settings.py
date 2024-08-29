@@ -28,6 +28,8 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.components',
+    'apps.keys',
 ]
 
 THIRD_APPS = [
@@ -63,11 +65,11 @@ CORS_ALLOW_METHODS = (
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'apps.keys.auth.ApiKeyAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework_api_key.permissions.HasAPIKey',
-    ],
 }
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
@@ -177,5 +179,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AUTH MODEL
 
 AUTH_USER_MODEL = 'users.User'
