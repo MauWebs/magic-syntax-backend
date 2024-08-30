@@ -28,8 +28,9 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
-    'apps.components',
+    'apps.admins',
     'apps.keys',
+    'apps.components',
 ]
 
 THIRD_APPS = [
