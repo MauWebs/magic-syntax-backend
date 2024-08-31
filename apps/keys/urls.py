@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import ApiKeyView, ApiKeyTestView
+from .views import ApiKeyView, ApiKeyInfoView
 
 urlpatterns = [
-    path('', ApiKeyView.as_view(), name='api-keys'),
-    path('test/', ApiKeyTestView.as_view(), name='api-keys-test'),
+    path("", ApiKeyView.as_view(), name="api-keys"),
+    path("info/", ApiKeyInfoView.as_view(), name="api-keys-info"),
 ]

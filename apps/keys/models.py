@@ -1,11 +1,10 @@
 from django.db import models
 import secrets
-
 from apps.users.models import User
 
 
 class ApiKey(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     key = models.CharField(max_length=40, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
