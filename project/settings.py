@@ -61,7 +61,7 @@ CORS_ALLOW_METHODS = (
     'PUT',
 )
 
-# SIMPLE JWT
+# Authentication
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

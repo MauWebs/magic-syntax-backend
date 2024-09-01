@@ -1,8 +1,4 @@
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    BaseUserManager,
-    PermissionsMixin,
-)
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, PermissionsMixin)
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -33,27 +29,13 @@ class CustomAccountManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    user_name = models.CharField(
-        max_length=150,
-        validators=[
-            RegexValidator(
-                regex=r'^[\w._]+$',
-                message=_(
-                    'El nombre de usuario solo puede contener letras, números, puntos y guiones bajos.'
-                ),
-            )
-        ],
-    )
+    user_name = models.CharField(max_length=150,validators=[RegexValidator(regex=r'^[\w._]+$',message=_('El nombre de usuario solo puede contener letras, números, puntos y guiones bajos.'),)],)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     start_date = models.DateTimeField(default=timezone.now)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    plan = models.CharField(
-        max_length=10,
-        choices=[('free', 'Free'), ('basic', 'Basic'), ('expert', 'Expert')],
-        default='free',
-    )
+    plan = models.CharField(max_length=10,choices=[('free', 'Free'), ('basic', 'Basic'), ('expert', 'Expert')],default='free')
     objects = CustomAccountManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

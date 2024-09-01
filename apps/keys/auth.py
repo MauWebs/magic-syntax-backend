@@ -1,7 +1,9 @@
+# Auth.py
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
-from .models import ApiKey
 import logging
+
+from .models import ApiKey
 
 logger = logging.getLogger(__name__)
 
@@ -29,5 +31,19 @@ class ApiKeyAuthentication(BaseAuthentication):
             logger.warning('Invalid API Key')
             raise AuthenticationFailed('Invalid API Key')
 
+        user = api_key_obj.user
         logger.info('Authentication successful')
-        return (api_key_obj.user, None)
+
+        self.user_plan = user.plan if user else None
+
+        return (user, None)
+
+
+class ApiKeyPlan:
+    def get_user_plan(self, request):
+        auth = ApiKeyAuthentication()
+        auth.authenticate(request)
+        if not auth.user_plan:
+            raise AuthenticationFailed('User not found or plan not available')
+        logger.debug(f'User plan: {auth.user_plan}')
+        return str(auth.user_plan)
