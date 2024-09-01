@@ -7,8 +7,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', ComponentView.as_view(), name='component-list'),
-    path('<int:pk>/', ComponentDetailView.as_view(), name='component-detail'),
-    path('files/', ComponentFileView.as_view(), name='file-list'),
-    path('files/<int:pk>/', ComponentFileDetailView.as_view(), name='file-detail'),
+    path('', ComponentView.as_view()),
+    path('<int:pk>/', ComponentDetailView.as_view()),
+    path('<int:component_id>/files/', ComponentFileView.as_view()),
+    path('<int:component_id>/files/<int:pk>/', ComponentFileDetailView.as_view()),
 ]

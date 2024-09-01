@@ -1,15 +1,9 @@
-from asyncio.log import logger
-
-
-def filter_by_plan(items, plan):
-    if plan == "free":
-        filtered = items.filter(plan="free")
-    elif plan == "basic":
-        filtered = items.filter(plan__in=["free", "basic"])
-    elif plan == "expert":
-        filtered = items.filter(plan__in=["free", "basic", "expert"])
+def get_items_by_plan(user_plan, model):
+    if user_plan == 'free':
+        return model.objects.filter(plan='free')
+    elif user_plan == 'basic':
+        return model.objects.filter(plan__in=['free', 'basic'])
+    elif user_plan == 'expert':
+        return model.objects.all()
     else:
-        filtered = items.none()
-
-    logger.debug(f'Filtered items for plan {plan}: {filtered}')
-    return filtered
+        return model.objects.none()
