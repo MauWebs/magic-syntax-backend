@@ -5,6 +5,8 @@
 __pycache__/
 db.sqlite3
 media/
+apps/*/migrations/*
+!*apps/*/migrations/__init__.py
 
 # Archivos de respaldo
 *.bak
