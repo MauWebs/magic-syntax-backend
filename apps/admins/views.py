@@ -51,7 +51,7 @@ class ComponentFileAdminView(APIView):
 
     def get(self, request, component_pk):
         component = get_object_or_404(Component, pk=component_pk)
-        files = component.files.all()
+        files = component.componentfile_set.all()
         serializer = ComponentFileSerializer(files, many=True)
         return Response(serializer.data)
 
@@ -59,8 +59,7 @@ class ComponentFileAdminView(APIView):
         component = get_object_or_404(Component, pk=component_pk)
         serializer = ComponentFileSerializer(data=request.data)
         if serializer.is_valid():
-            component_file = serializer.save()
-            component.files.add(component_file)
+            serializer.save(component=component)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

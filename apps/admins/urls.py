@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (  
+from .views import (
     ComponentAdminView,
     ComponentDetailAdminView,
     ComponentFileAdminView,
@@ -7,8 +7,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('components/', ComponentAdminView.as_view()),
-    path('components/<int:pk>/', ComponentDetailAdminView.as_view()),
-    path('components/<int:component_pk>/files/', ComponentFileAdminView.as_view()),
-    path('components/<int:component_pk>/files/<int:pk>/', ComponentFileDetailAdminView.as_view()),
+    path("components/", ComponentAdminView.as_view()),
+    path("components/<int:pk>/", ComponentDetailAdminView.as_view()),
+    path("components/<int:component_pk>/files/", ComponentFileAdminView.as_view()),
+    path("components/<int:component_pk>/files/<int:pk>/",ComponentFileDetailAdminView.as_view(),),
 ]

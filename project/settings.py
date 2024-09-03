@@ -40,7 +40,7 @@ THIRD_APPS = [
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
-# CORS HEADERS
+# Cors headers
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -181,6 +181,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH MODEL
+# Auth model
 
 AUTH_USER_MODEL = 'users.User'
