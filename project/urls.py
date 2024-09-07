@@ -7,6 +7,7 @@ urlpatterns = [
     path('admins/', include('apps.admins.urls')),
     path('api-keys/', include('apps.keys.urls')),
     path('components/', include('apps.components.urls')),
+    path('devices/', include('apps.devices.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

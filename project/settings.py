@@ -30,6 +30,7 @@ LOCAL_APPS = [
     'apps.users',
     'apps.admins',
     'apps.keys',
+    'apps.devices',
     'apps.components',
 ]
 

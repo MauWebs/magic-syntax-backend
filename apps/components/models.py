@@ -1,32 +1,17 @@
 from django.db import models
-
-FOLDER_PATH = [
-    ('components', 'Components'),
-    ('styles', 'Styles'),
-]
-
-FILE_TYPES = [
-    ('.jsx', 'JavaScript XML'),
-    ('.css', 'Cascading Style Sheets'),
-]
-
-PLAN_TYPES = [
-    ('free', 'Free'),
-    ('basic', 'Basic'),
-    ('expert', 'Expert'),
-]
+from core.constants.plans_constants import PLANS, FILE_TYPES, FOLDER_PATH
 
 
 class Component(models.Model):
     name = models.CharField(max_length=255)
-    plan = models.CharField(max_length=6, choices=PLAN_TYPES)
+    plan = models.CharField(max_length=6, choices=PLANS)
 
 
 class ComponentFile(models.Model):
     content = models.TextField(blank=True)
     file_name = models.CharField(max_length=255)
     component = models.ForeignKey(Component, on_delete=models.CASCADE)
-    plan = models.CharField(max_length=6, choices=PLAN_TYPES, editable=False)
+    plan = models.CharField(max_length=6, choices=PLANS, editable=False)
     file_type = models.CharField(max_length=4, choices=FILE_TYPES)
     folder_path = models.CharField(max_length=10, choices=FOLDER_PATH)
 

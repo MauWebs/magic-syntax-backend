@@ -23,7 +23,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-class RegisterViews(APIView):
+class RegisterView(APIView):
     def post(self, request):
         data = request.data
         try:
@@ -45,7 +45,7 @@ class RegisterViews(APIView):
             return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UsersViews(APIView):
+class UsersView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -64,7 +64,7 @@ class UsersViews(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserViews(APIView):
+class UserView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, pk):

@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from apps.utils.validate_plan import get_items_by_plan
+from core.utils.validate_plan import get_items_by_plan
 from apps.keys.auth import ApiKeyAuthentication, ApiKeyPlan
 from .models import Component, ComponentFile
 from .serializers import ComponentSerializer, ComponentFileSerializer
